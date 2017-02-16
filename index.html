@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>Cours Base de données</section>
+				<section>
+					<p>Paul Guichon</p>
+					<p><a>paul.guichon@iedparis8.net</a></p>
+					<p>Sujet du mail doit commencer par [bdd l2]</p>
+					<p><a href="https://github.com/pguichon">https://github.com/pguichon</a></p>
+					<p>Bâtiment D bureau 238 (deuxième étage droite)</p>
+				</section>
+				<section>
+					<h3>Evaluation</h3>
+					<ul>
+						<li>QCM toute les deux à trois semaines en fin de TP</li>
+						<li>Un projet</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Notation</h3>
+					<p>La note de QCM : je peux retirer la moins bonne et la meilleur (sur demande de l'étudiant)</p>
+						<ul>
+							<li>Si négative : la différence avec 10 est retirer de la note du projet </li>
+							<li>Si positive : la différence avec 10 diviser par deux est ajouter à la note du TP</li>
+						</ul>
+
+				</section>
+				<section>
+
+						Exemple :
+
+					<ul>
+						<li>J'ai 8 de moyenne pour le QCM : 10 - 8 = 2 : -2 points </li>
+						<li>J'ai 6 à mon TP : la note totale  6 - 2 = 4 </li>
+						<li>J'ai 14 à mon TP : la note totale  14 - 2 = 12</li>
+					</ul>
+
+				</section>
+				<section>
+					<ul>
+						<li>J'ai 14 de moyenne : (14 - 10) / 2 = 2</li>
+						<li>J'ai 8 à mon TP : 8 + 2 = 10</li>
+						<li>J'ai 14 à mon TP : 14 + 2 = 16</li>
+					</ul>
+
+
+				</section>
+				<section>
+
+					<h3>Base de donnée</h3>
+
+					<p class="fragment">Stoke des données (support)</p>
+					<p class="fragment">Manipule les données (moteur)</p>
+					<p class="fragment">On parle de SGBD (système de gestion de base de donnée</p>
+
+
+				</section>
+				<section>
+					<h4>C'est utilisé pour :</h4>
+					<ul>
+						<li class="fragment">Le web</li>
+						<li class="fragment">Les jeux</li>
+						<li class="fragment">Les applications embarqués</li>
+						<li class="fragment">Les applications mobiles</li>
+						<li class="fragment">Bref de nos jours partout dès qu'il y a du réseau</li>
+					</ul>
+				</section>
+				<section>
+					<h4>Deux grandes familles de base de donnée</h4>
+					<ul>
+						<li>Les bases de données relationnelles</li>
+						<li>Les bases de données NoSQL</li>
+					</ul>
+				</section>
+				<section>
+					<h4>Les Bases de données relationnelles</h4>
+					<ul>
+						<li>Postgresql</li>
+						<li>Mysql/mariaDb</li>
+						<li>Oracle</li>
+						<li>SQLite</li>
+					</ul>
+				</section>
+				<section>
+					<h4>Base de données relationnelles</h4>
+					<p>Stocke les données de façon structure et les relations entre les structures</p>
+					<p>Permet de les manipuler grâce au SQL</p>
+				</section>
+				<section>
+					<h4>Le SQL</h4>
+					<p>SQL : Structured Query Langage</p>
+					<p>C'est un langage de la forme Verbe (action) sur (élément) d'ou (table) condition</p>
+				</section>
+				<section>
+					<h4>Table</h4>
+					<p>Les données sont stockées dans des tables</p>
+					<p>Ligne de la table correspond à un enregistrement</p>
+					<p>Une colonne correspond à une propriété de l'enregistrement</p>
+				</section>
+				<section>
+					<h4>Exemple</h4>
+					<table>
+					<thead>
+					<tr>
+						<th>id</th>
+						<th>code</th>
+						<th>label</th>
+						<th>quantity</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td>1</td>
+						<td>0001</td>
+						<td>Marteau</td>
+						<td>10</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>0002</td>
+						<td>Tournevis</td>
+						<td>3</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>0003</td>
+						<td>Clous</td>
+						<td>1000</td>
+					</tr>
+					</tbody>
+					</table>
+				</section>
+				<section>
+					<h4>Primary Key</h4>
+					<ul>
+						<li>Il s'agit d'une colonne qui contiendra une valeur unique</li>
+						<li>Généralement on utilise un nom et on nomme cette colonne id</li>
+						<li>Lorsque c'est possible on utilisera un champ auto-incrémenté</li>
+					</ul>
+
+				</section>
+				<section>
+					<h4>Création d'une table</h4>
+					<pre>
+						<code class="sql" data-trim >
+							CREATE TABLE articles (
+							id INTEGER PRIMARY KEY,
+							code TEXT,
+							label TEXT,
+							quantity INTEGER);
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h4>Création d'une table</h4>
+					<pre>
+						<code class="sql" data-trim >
+							CREATE TABLE article s(
+							id INTEGER,
+							code TEXT,
+							label TEXT,
+							quantity INTEGER,
+							PRIMARY KEY(id));
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h4>Suppression d'une table</h4>
+					<pre><code class="sql" data-trim="">
+						DROP TABLE articles;
+					</code></pre>
+				</section>
+				<section>
+					<h4>Selection</h4>
+					<pre><code class="sql" data-trim="">
+						SELECT id, code, clabel, quantity FROM articles;
+					</code></pre>
+					Avec le *
+					<pre><code class="sql" data-trim="">
+						SELECT * FROM articles;
+					</code></pre>
+					Attention si * l'ordre des colonnes est aléatoire
+				</section>
+				<section>
+					<h4>Selection avec condition </h4>
+					<pre><code class="sql" data-trim="">
+						SELECT id, code, clabel, quantity FROM articles WHERE id=1;
+					</code></pre>
+				</section>
+				<section>
+					<h2>Merci</h2>
+					<a href="https://sqlite.org/lang.html">https://sqlite.org/lang.html</a>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
